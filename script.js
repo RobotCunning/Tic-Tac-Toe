@@ -15,24 +15,25 @@ function createPlayer(name, gamepiece){
 function gameBoard(){
 let grid = document.querySelector(".gameboard");
 grid.innerHTML = "";
-    for(let x=0; x<3; x++){
-        gameboard[x] = []
-        let gridCellX = document.createElement("div");
-        gridCellX.id = "gridCellX"+ x;
-        gridCellX.className = "gridCell";
-        gridCellX.innerHTML=`
-        <div id="gridContent${x} class= "gridContent">test</div>
-        `
-        grid.appendChild(gridCellX);
-        for(let y=0; y<2; y++){
-            addCell(x, y);
-            let gridCellY = document.createElement("div");
+    for(let y=0; y<3; y++){
+        gameboard[y] = []
+        let gridCellY = document.createElement("div");
             gridCellY.id = "gridCellY" + y;
             gridCellY.className = "gridCell";
             gridCellY.innerHTML=`
         <div id="gridContent${y} class= "gridContent">test</div>
         `
         grid.appendChild(gridCellY);
+        
+        for(let x=1; x<3; x++){
+            addCell(y, x);
+            let gridCellX = document.createElement("div");
+        gridCellX.id = "gridCellX"+ x;
+        gridCellX.className = "gridCell";
+        gridCellX.innerHTML=`
+        <div id="gridContent${x} class= "gridContent">test</div>
+        `
+        grid.appendChild(gridCellX);
         }
     }
 console.log(gameboard);
