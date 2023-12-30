@@ -1,15 +1,51 @@
 let name = "Charlie";
-let gamepiece =  "X";
+let gamepiece = 0;
+const gameboard = [];
 function createPlayer(name, gamepiece){
+    gamepiece =  Math.floor(Math.random()*2);
+    if(gamepiece == 0){
+        gamepiece = "X";
+    } else if(gamepiece = 1){
+        gamepiece = "O";
+    }
     const player = name;
     console.log(player + " is playing with " + gamepiece);
 }
 
 function gameBoard(){
-var gameboard = [
-    ["a1", "a2", "a3"],
-    ["b1", "b2", "b3"],
-    ["c1", "c2", "c3"]
-]
+let grid = document.querySelector(".gameboard");
+grid.innerHTML = "";
+    for(let x=0; x<3; x++){
+        gameboard[x] = []
+        let gridCellX = document.createElement("div");
+        gridCellX.id = "gridCellX"+ x;
+        gridCellX.className = "gridCell";
+        gridCellX.innerHTML=`
+        <div id="gridContent${x} class= "gridContent">test</div>
+        `
+        grid.appendChild(gridCellX);
+        for(let y=0; y<2; y++){
+            addCell(x, y);
+            let gridCellY = document.createElement("div");
+            gridCellY.id = "gridCellY" + y;
+            gridCellY.className = "gridCell";
+            gridCellY.innerHTML=`
+        <div id="gridContent${y} class= "gridContent">test</div>
+        `
+        grid.appendChild(gridCellY);
+        }
+    }
 console.log(gameboard);
+}
+
+function addCell(x, y){
+    gameboard[x][y] = cell(x, y);
+}
+
+function cell(x,y){
+    return (x)+","+(y);
+}
+
+function playGame(){
+
 }

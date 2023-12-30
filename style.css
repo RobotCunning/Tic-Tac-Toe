@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Alegreya', serif;
+}
+
+body{
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 0px;
+    margin: 0px;
+}
+
+.gameboardContainer{
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: black solid 1px;
+}
+
+.gameboard{
+    display: grid;
+    grid-area: 2/2/3/3;
+    border: black solid 1px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.gridCell{
+    display: flex;
+    justify-content: center;
+    border: black solid 1px;
+}
+
+.gridCellContent{
+    color: black;
+    font-size: large;
+}
