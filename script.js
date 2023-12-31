@@ -63,7 +63,17 @@ if(gameboard[0][0] && gameboard[1][0] && gameboard[2][0] === 'X'){
     console.log('Winner')
 } else if(gameboard[0][2] && gameboard[1][2] && gameboard[2][2] === 'X'){
     console.log('Winner')
-}  else {
+}  else if(gameboard[0][0] && gameboard[0][1] && gameboard[0][2] === 'X'){
+    console.log('Winner')
+}  else if(gameboard[1][0] && gameboard[1][1] && gameboard[1][2] === 'X'){
+    console.log('Winner')
+} else if(gameboard[2][0] && gameboard[2][1] && gameboard[2][2] === 'X'){
+    console.log('Winner')
+}  else if(gameboard[0][0] && gameboard[1][1] && gameboard[2][2] === 'X'){
+    console.log('Winner')
+}  else if(gameboard[2][0] && gameboard[1][1] && gameboard[0][2] === 'X'){
+    console.log('Winner')
+} else{
     console.log('Loser')
 }
 }
