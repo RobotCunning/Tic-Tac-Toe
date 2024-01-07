@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form>
-        <input type="text" placeholder="Player Name" id="nameInput">
-    <button type="submit" onclick="createPlayer(name), gameBoard()">Push Me.</button>
-    </form>
+    
     <div class="gameboardContainer">
-        <div class="gameboard">
+        <div id="scoreboard" class="scoreboard">
 
         </div>
+        <div class="gameboard">
+            <dialog><div id="gameResultMessage">Game Over!</div></dialog>
+        </div>
+        <form class="playerInput">
+            <input type="text" placeholder="Player Name" id="nameInput1">
+            <input type="text" placeholder="Player Name" id="nameInput2">
+            <button type="submit" onclick="start()">Start Game</button>
+        </form>
     </div>
 <script src="script.js"></script>
 </body>
