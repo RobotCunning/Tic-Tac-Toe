@@ -63,7 +63,7 @@ function scoreBoardBuilder(){
         let scoreboard = document.createElement('div')
         scoreboard.id = "player"+ i;
         scoreboard.innerHTML=`
-        <div id='score' class='score'>${player.gamepiece} is ${player.name.value} : ${player.showScore()} </div>
+        <div id='score' class='score'><h2>${player.gamepiece}</h2><br><h3>${player.name.value} :</h3> <br> <h1>${player.showScore()}</h1> </div>
         `
         createScoreboard.appendChild(scoreboard);
     }
