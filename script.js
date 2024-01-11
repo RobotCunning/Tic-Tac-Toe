@@ -5,24 +5,16 @@ let players = [];
 const start=(()=>{
     function createPlayer(name, gamepiece){
     let score = 0;
-    //console.log(name.value + " is playing with " + gamepiece);
     const roundWon = () => score++;
     const showScore = () => score;
     const scoreReset = () => score = 0;
-    //const showGamepiece = () => gamepiece;
     players.push({name, score});
-    
     return {name, gamepiece, showScore, roundWon, score, scoreReset};
 }
-
-
     players = [
         createPlayer(player1, 'X'),
         createPlayer(player2, 'O')
     ]
-    //player1.gamepiece = 'X'
-    //player2.gamepiece = 'O'
-    console.log(player1.gamepiece, " + ", player2.gamepiece)
     for(i=0; i<players.length; i++){
         user = players[i];
     }
@@ -54,7 +46,6 @@ function addCell(x, y){
 function cell(x,y){
     return 'grid' + x + y;
 }
-
 function scoreBoardBuilder(){
     let createScoreboard = document.querySelector('#scoreboard')
     createScoreboard.innerHTML = "";
@@ -68,14 +59,7 @@ function scoreBoardBuilder(){
         createScoreboard.appendChild(scoreboard);
     }
 }
-
-
-console.log(gameboard);
-//playGame(gameboard);
 scoreBoardBuilder();
-//winCheck();
-//boardFull(gameboard) 
-//return gameboard;
 })
 const playGame=((gameboard)=>{
 if(
@@ -94,7 +78,7 @@ function reset(){
 }
 function winCheck(){
     if(players[0].showScore() == 3 || players[1].showScore() == 3){
-        console.log(user.name.value +" wins!");
+        alert(user.name.value +" wins!");
         return reset();
     }
 }
@@ -108,12 +92,11 @@ function boardFull(gameboard){
         }    
     }
     if(count === 9){
-        console.log('Draw!')
+        alert('Draw!')
         gameBoard()
         return draw = true
     } 
 }
-
 boardFull(gameboard);
 })
 const playInput=((x, y)=> {
@@ -121,20 +104,16 @@ const playInput=((x, y)=> {
     if(user.gamepiece == 'X'){
        select.innerHTML = 'X';
        gameboard[x][y] = user.gamepiece;
-       console.log(gameboard) 
     } else {
         select.innerHTML = 'O';
         gameboard[x][y] = user.gamepiece;
-        console.log(gameboard) 
     }
-    
 function switchPlayer(){
     if (user.gamepiece == 'X'){
         user = players[1]
     } else {
         user = players[0]
     }
-    console.log(user.gamepiece)
 }
     playGame(gameboard)
     switchPlayer();

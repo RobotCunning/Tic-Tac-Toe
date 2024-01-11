@@ -67,10 +67,10 @@ h1{
 }
 .playerInput{
     grid-area: 3/2/4/3;
+    text-align: center;
 }
 
 #gameResultMessage{
-    display: none;
     border-radius: 15px;
 }
 
