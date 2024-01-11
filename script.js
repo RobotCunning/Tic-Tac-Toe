@@ -1,32 +1,21 @@
-
 let player1 = document.getElementById("nameInput1");
 let player2 = document.getElementById("nameInput2");
 const gameboard = [];
 let players = [];
-const gameStatus = false;
-//let user = createPlayer(player)
-
-function createPlayer(name, gamepiece){
+const start=(()=>{
+    function createPlayer(name, gamepiece){
     let score = 0;
     //console.log(name.value + " is playing with " + gamepiece);
-    const showScore = () => score;
     const roundWon = () => score++;
+    const showScore = () => score;
+    const scoreReset = () => score = 0;
     //const showGamepiece = () => gamepiece;
     players.push({name, score});
     
-    return {name, gamepiece, showScore, roundWon, score};
+    return {name, gamepiece, showScore, roundWon, score, scoreReset};
 }
 
-function switchPlayer(){
-    if (user.gamepiece == 'X'){
-        user = players[1]
-    } else {
-        user = players[0]
-    }
-    console.log(user.gamepiece)
-}
 
-function start(){
     players = [
         createPlayer(player1, 'X'),
         createPlayer(player2, 'O')
@@ -38,10 +27,11 @@ function start(){
         user = players[i];
     }
     gameBoard();
-    
-}
-
-
+    const form = document.querySelector("form");
+form.addEventListener("submit", function(event) { 
+    event.preventDefault(); // Prevents the form from submitting and the page from reloading 
+  });
+})
 const gameBoard = (() => {
 let grid = document.querySelector(".gameboard");
 grid.innerHTML = "";
@@ -64,60 +54,6 @@ function addCell(x, y){
 function cell(x,y){
     return 'grid' + x + y;
 }
-const reset = (() => {
-    for(i = 0; i < players.length; i++){
-        players[i].score = 0;
-    }
-    gameBoard()
-    
-})
-function winCheck(){
-    if(player1.score == 3){
-        console.log(user.name.value +" wins!");
-        return reset();
-    } else if(player2.score == 3){
-        return reset();
-    }
-}
-
-
-
-console.log(gameboard);
-//playGame(gameboard);
-scoreBoardBuilder();
-winCheck();
-//return gameboard;
-})
-
-function playInput(x, y) {
-    let select = document.getElementById("gridContent"+x+y);
-    if(user.gamepiece == 'X'){
-       select.innerHTML = 'X';
-       gameboard[x][y] = user.gamepiece;
-       console.log(gameboard) 
-    } else {
-        select.innerHTML = 'O';
-        gameboard[x][y] = user.gamepiece;
-        console.log(gameboard) 
-    }
-    
-    playGame(gameboard)
-    switchPlayer();
-}
-function playGame(gameboard){
-if(
-   (gameboard[0][0] == gameboard[1][0] && gameboard[0][0] == gameboard[2][0]) || (gameboard[0][1] == gameboard[1][1] && gameboard[0][1] == gameboard[2][1])
-|| (gameboard[0][2] == gameboard[1][2] && gameboard[0][2] == gameboard[2][2]) || (gameboard[0][0] == gameboard[0][1] && gameboard[0][0] == gameboard[0][2])
-|| (gameboard[1][0] == gameboard[1][1] && gameboard[1][0] == gameboard[1][2]) || (gameboard[2][0] == gameboard[2][1] && gameboard[2][0] == gameboard[2][2])
-|| (gameboard[0][0] == gameboard[1][1] && gameboard[0][0] == gameboard[2][2]) || (gameboard[2][0] == gameboard[1][1] && gameboard[2][0] == gameboard[0][2])){
-    user.roundWon();
-    console.log(user.showScore())
-    user.showScore();
-    gameBoard();
-}
-}
-
-
 
 function scoreBoardBuilder(){
     let createScoreboard = document.querySelector('#scoreboard')
@@ -133,10 +69,73 @@ function scoreBoardBuilder(){
     }
 }
 
-const form = document.querySelector("form");
-form.addEventListener("submit", function(event) { 
-    event.preventDefault(); // Prevents the form from submitting and the page from reloading 
-  });
 
+console.log(gameboard);
+//playGame(gameboard);
+scoreBoardBuilder();
+//winCheck();
+//boardFull(gameboard) 
+//return gameboard;
+})
+const playGame=((gameboard)=>{
+if(
+   (gameboard[0][0] == gameboard[1][0] && gameboard[0][0] == gameboard[2][0]) || (gameboard[0][1] == gameboard[1][1] && gameboard[0][1] == gameboard[2][1])
+|| (gameboard[0][2] == gameboard[1][2] && gameboard[0][2] == gameboard[2][2]) || (gameboard[0][0] == gameboard[0][1] && gameboard[0][0] == gameboard[0][2])
+|| (gameboard[1][0] == gameboard[1][1] && gameboard[1][0] == gameboard[1][2]) || (gameboard[2][0] == gameboard[2][1] && gameboard[2][0] == gameboard[2][2])
+|| (gameboard[0][0] == gameboard[1][1] && gameboard[0][0] == gameboard[2][2]) || (gameboard[2][0] == gameboard[1][1] && gameboard[2][0] == gameboard[0][2])){
+    user.roundWon();
+    winCheck()
+    gameBoard();
+}
+function reset(){
+    players[0].scoreReset()
+    players[1].scoreReset()
+    gameBoard()
+}
+function winCheck(){
+    if(players[0].showScore() == 3 || players[1].showScore() == 3){
+        console.log(user.name.value +" wins!");
+        return reset();
+    }
+}
+function boardFull(gameboard){
+    let count = 0
+    for(i=0;i<3;i++){
+        for(j=0;j<3;j++){
+            if(gameboard[i][j] === 'O' || gameboard[i][j] === 'X'){
+                count++
+            }
+        }    
+    }
+    if(count === 9){
+        console.log('Draw!')
+        gameBoard()
+        return draw = true
+    } 
+}
 
-
+boardFull(gameboard);
+})
+const playInput=((x, y)=> {
+    let select = document.getElementById("gridContent"+x+y);
+    if(user.gamepiece == 'X'){
+       select.innerHTML = 'X';
+       gameboard[x][y] = user.gamepiece;
+       console.log(gameboard) 
+    } else {
+        select.innerHTML = 'O';
+        gameboard[x][y] = user.gamepiece;
+        console.log(gameboard) 
+    }
+    
+function switchPlayer(){
+    if (user.gamepiece == 'X'){
+        user = players[1]
+    } else {
+        user = players[0]
+    }
+    console.log(user.gamepiece)
+}
+    playGame(gameboard)
+    switchPlayer();
+})
